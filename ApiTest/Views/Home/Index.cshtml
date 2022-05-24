@@ -1,0 +1,101 @@
+﻿<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div>
+    <form id="saveLogForm" method="post">
+        <h3>Insert a Log(API: /api/insertlog)</h3>
+        <p>
+            <label for="LogName">Name:</label>
+            <input type="text" name="name" required />
+        </p>
+        <p>
+            <label for="LogMobile">Mobile:</label>
+            <input type="text" name="mobile" required />
+        </p>
+        <p>
+            <label for="LogCheckIn">checkin:</label>
+            <input type="datetime-local" name="checkIn" required value="2000/01/01T00:00:00"/>
+        </p>
+        <p>
+            <label for="LogSchedule">Schedule:</label>
+            <input type="text" name="schedule" required />
+        </p>
+        <p>
+            <label for="LogBranch">branch:</label>
+            <input type="text" name="branch" required />
+        </p>
+
+        <input type="button" id="saveLog" value="Save" />
+    </form>
+</div>
+<div>
+    <form id="saveToDoListForm" method="post">
+        <h3>Insert a ToDoList(API: /api/inserttodolist)</h3>
+        <p>
+            <label for="ToDoListName">Name:</label>
+            <input type="text" name="title" required />
+        </p>
+        <p>
+            <label for="ToDoListBody">Body:</label>
+            <input type="text" name="body" required />
+        </p>
+        <p>
+            <label for="ToDoListOwner">Owner:</label>
+            <input type="text" name="owner" required />
+        </p>
+        <p>
+            <label for="ToDoListInsertDate">Insert Date:</label>
+            <input type="datetime-local" name="insertDate" value="2000/01/01T00:00:00" required />
+        </p>
+        <p>
+            <label for="ToDoListStatus">Status:</label>
+            <input type="text" name="status" required />
+        </p>
+
+        <input type="button" id="saveToDoList" value="Save" />
+    </form>
+</div>
+
+<div>
+    <form id="getSalesTranForm" method="get">
+        <h3>Get a SalesTran(API: /api/selectSalesTran)</h3>
+        <p>
+            <label for="dashDate">DashDate:</label>
+            <input type="datetime-local" name="dashDate" value="2000-01-01T00:00:00.000" required />
+        </p>
+        <p>
+            <label for="branch">Branch:</label>
+            <input type="text" name="branch" required />
+        </p>
+        
+        <input type="button" id="getSalesTranBtn" value="Save" />
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    $('#saveLog').click(function()
+    {
+        $.post("/api/insertLog",
+               $("#saveContactForm").serialize(),
+               "json"
+        );      
+    });
+    $('#saveToDoList').click(function () {
+        $.post("/api/insertToDoList",
+              $("#saveToDoListForm").serialize(),
+              "json"
+        );
+    });
+
+    $('#getSalesTranBtn').click(function () {
+        console.log($("#getSalesTranForm").serialize())
+        $.post("/api/selectSalesTran",
+              $("#getSalesTranForm").serialize(),
+              "json"
+        );
+    });
+</script>
